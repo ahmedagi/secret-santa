@@ -1,21 +1,23 @@
 package org.example.secretsanta.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
+@Table("list")
 public class SecretSantaList {
 
     @Id
     private Long id;
-    private LocalDateTime dateTime;
+    private LocalDateTime createdAt ;
 
     public SecretSantaList() {
     }
 
     public SecretSantaList(Long id, LocalDateTime dateTime) {
         this.id = id;
-        this.dateTime = dateTime;
+        this.createdAt = dateTime;
     }
 
     public Long getId() {
@@ -26,11 +28,11 @@ public class SecretSantaList {
         this.id = id;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

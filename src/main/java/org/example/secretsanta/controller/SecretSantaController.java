@@ -3,6 +3,7 @@ package org.example.secretsanta.controller;
 import org.example.secretsanta.model.SecretSantaPairDTO;
 import org.example.secretsanta.service.SecretSantaService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +22,10 @@ public class SecretSantaController {
     @GetMapping
     public List<SecretSantaPairDTO> getPairs() {
         return secretSantaService.getPairs();
+    }
+
+    @PostMapping("/generate")
+    public void generatePairs() {
+        secretSantaService.generateNewPairs();
     }
 }

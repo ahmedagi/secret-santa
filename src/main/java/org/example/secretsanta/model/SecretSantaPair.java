@@ -1,7 +1,9 @@
 package org.example.secretsanta.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Table("pair")
 public class SecretSantaPair {
 
     @Id
@@ -16,6 +18,12 @@ public class SecretSantaPair {
 
     public SecretSantaPair(Long id, Long giverId, Long receiverId, Long listId) {
         this.id = id;
+        this.giverId = giverId;
+        this.receiverId = receiverId;
+        this.listId = listId;
+    }
+
+    public SecretSantaPair(Long giverId, Long receiverId, Long listId) {
         this.giverId = giverId;
         this.receiverId = receiverId;
         this.listId = listId;
