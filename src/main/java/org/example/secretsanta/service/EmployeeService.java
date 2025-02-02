@@ -16,4 +16,8 @@ public class EmployeeService {
     public Iterable<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
+
+    public Employee createEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
 }
