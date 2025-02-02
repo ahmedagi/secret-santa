@@ -16,6 +16,7 @@ public interface SecretSantaRepository extends CrudRepository<SecretSantaPair, L
     LEFT JOIN list ON pair.list_id = list.id
     LEFT JOIN employee giver ON pair.giver_id = giver.id
     LEFT JOIN employee receiver ON pair.receiver_id = receiver.id
+    WHERE list.created_at = (SELECT MAX(created_at) FROM list);
 """)
     List<SecretSantaPairDTO> findPairs();
 }
