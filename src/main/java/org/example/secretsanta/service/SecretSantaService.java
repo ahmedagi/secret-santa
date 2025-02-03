@@ -38,7 +38,7 @@ public class SecretSantaService {
     }
 
     @Transactional
-    public void generateNewPairs() {
+    public List<SecretSantaPairDTO> generateNewPairs() {
         SecretSantaList newList = secretSantaListRepository.save(new SecretSantaList(null, LocalDateTime.now()));
 
         List<Employee> employees = (List<Employee>) employeeRepository.findAll();
@@ -69,5 +69,6 @@ public class SecretSantaService {
         }
 
         secretSantaRepository.saveAll(pairs);
+        return secretSantaRepository.findPairs();
     }
 }

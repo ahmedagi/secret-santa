@@ -24,7 +24,7 @@ public class SecretSantaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void generatePairs() {
-        secretSantaService.generateNewPairs();
+    public List<SecretSantaPairDTO> generatePairs() {
+        return secretSantaService.generateNewPairs();
     }
 }
