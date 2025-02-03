@@ -41,7 +41,7 @@ public class SecretSantaService {
     public List<SecretSantaPairDTO> generateNewPairs() {
         SecretSantaList newList = secretSantaListRepository.save(new SecretSantaList(null, LocalDateTime.now()));
 
-        List<Employee> employees = (List<Employee>) employeeRepository.findAll();
+        List<Employee> employees = (List<Employee>) employeeRepository.findAllByDeletedFalse();
         Collections.shuffle(employees);
 
         List<SecretSantaPair> pairs = new ArrayList<>();
