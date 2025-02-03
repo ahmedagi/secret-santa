@@ -13,8 +13,12 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public Iterable<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+    public Iterable<Employee> getAllEmployees(Boolean includeDeleted) {
+        if (includeDeleted) {
+            return employeeRepository.findAll();
+        }
+
+        return employeeRepository.findAllByDeletedFalse();
     }
 
     public Employee createEmployee(Employee employee) {

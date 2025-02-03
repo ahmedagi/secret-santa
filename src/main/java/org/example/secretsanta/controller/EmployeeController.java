@@ -5,6 +5,9 @@ import org.example.secretsanta.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.logging.Logger;
+
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
@@ -16,8 +19,8 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public Iterable<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
+    public Iterable<Employee> getAllEmployees(@RequestParam(required = false) boolean includeDeleted) {
+        return employeeService.getAllEmployees(includeDeleted);
     }
 
     @PostMapping
