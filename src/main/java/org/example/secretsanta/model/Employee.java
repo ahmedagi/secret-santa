@@ -7,6 +7,7 @@ public class Employee {
     @Id
     private Long id;
     private String name;
+    private Boolean deleted = false;
 
     public Employee(Long id, String name) {
         this.id = id;
@@ -27,5 +28,13 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 }

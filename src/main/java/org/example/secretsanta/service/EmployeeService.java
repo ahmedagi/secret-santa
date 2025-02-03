@@ -22,6 +22,8 @@ public class EmployeeService {
     }
 
     public void deleteEmployeeById(Long id) {
-        employeeRepository.deleteById(id);
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        employee.setDeleted(true);
+        employeeRepository.save(employee);
     }
 }
