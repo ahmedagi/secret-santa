@@ -1,0 +1,157 @@
+:root {
+    /* colors */
+    --santa-red: #da2c38;
+    --santa-dark-green: #226f54;
+    --santa-light-green: #87c38f;
+    --santa-light-yellow: #f4f0bb;
+    --santa-beige: #f3e9d5;
+    --santa-brown: #43291f;
+    --santa-white: #efeeea;
+
+    /* fonts */
+    --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    height: 100%;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: var(--santa-white);
+
+    padding: 20px;
+
+    background-color: var(--santa-dark-green);
+
+    position: sticky;
+    top: 0px;
+}
+
+.header-title {
+    font-size: 32px;
+}
+
+.main {
+    flex: 1;
+    align-self: center;
+    width: min(800px, 90%);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.add-employee-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    position: sticky;
+    bottom: 0px;
+
+    padding: 16px 8px 24px;
+    margin-top: 2px;
+
+    background-color: white;
+
+    border-width: 2px;
+    border-color: #9998;
+    border-top-style: dotted;
+}
+
+
+.add-employee-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+input[type=text] {
+    height: 28px;
+    padding-left: 6px;
+    /* width: 250px; */
+}
+
+.employees-container {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.employee-card {
+    padding: 8px 0 8px 8px;
+    border-width: 2px;
+    border-color: #9998;
+    border-bottom-style: solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.employee-name {
+    font-size: 16px;
+}
+
+.button {
+    padding: 6px 10px;
+    border-style: none;
+    border-radius: 6px;
+    color: var(--santa-white);
+    font-size: 15px;
+}
+
+.delete-button {
+    background-color: transparent;
+    color: var(--santa-red);
+}
+
+.restore-button {
+    background-color: transparent;
+    color: var(--santa-dark-green);
+}
+
+.submit-button {
+    background-color: var(--santa-dark-green);
+    color: var(--santa-white);
+}
+
+.fa-icon {
+    /*font-size: 18px;*/
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+
+    padding: 16px;
+
+    background-color: var(--santa-beige);
+
+    color: var(--santa-brown);
+    font-size: 14px;
+}

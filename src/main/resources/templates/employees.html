@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/employees.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Employees</title>
+</head>
+<body class="container">
+<header class="header">
+        <span class="header-title">
+            Secret Santa
+        </span>
+</header>
+<main class="main">
+    <div class="employees-container">
+        <div th:each="employee : ${employees}" class="employee-card" th:data-employee-id="${employee.id}">
+            <span th:text="${employee.name}" class="employee-name" th:classappend="${employee.deleted} ? 'deleted' : ''"></span>
+            <button class="delete-button button" type="button" th:data-employee-id="${employee.id}"><i class="fa-solid fa-trash fa-icon"></i></button>
+        </div>
+    </div>
+    <form class="add-employee-form" action="/api/employees" method="post">
+        <label for="name">Add Employee</label>
+        <div class="add-employee-input">
+            <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Name"
+                    required
+                    pattern=".*\S+.*"
+                    title="Field cannot be blank"
+            >
+            <button class="button submit-button" type="submit">Add</button>
+        </div>
+    </form>
+</main>
+<footer class="footer">
+    Secret Santa Demo
+</footer>
+</body>
+</html>
