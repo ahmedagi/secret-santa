@@ -1,10 +1,18 @@
 import { addEmployee, deleteEmployee } from "./api.js";
 
-// API callbacks
-function onAddEmployee(success, data) {
+// Event handlers
+async function handleAddEmployee(e) {
+    e.preventDefault();
+    const trimmed = nameInput.value.trim();
+    if (trimmed === '') {
+        showErrorMessage("Name cannot be blank.");
+        return;
+    }
+
+    const { success, data } = await addEmployee(trimmed);
     if (success) {
         addEmployeeCard(data.name, data.id);
-        scrollToBeforeFooter();
+        scrollToLastEmployee();
         nameInput.value = '';
         nameInput.focus();
     } else {
@@ -12,22 +20,20 @@ function onAddEmployee(success, data) {
     }
 }
 
-// Event handlers
-async function handleDelete(e) {
+async function handleDeleteEmployee(e) {
     const button = e.currentTarget;
     const id = button.getAttribute("data-employee-id");
     const { success, data } = await deleteEmployee(id);
     if (success) {
         const card = document.querySelector(`.employee-card[data-employee-id="${id}"]`);
         employeesContainer.removeChild(card);
-        button.removeEventListener("click", handleDelete);
+        button.removeEventListener("click", handleDeleteEmployee);
     } else {
         alert(data);
     }
 }
 
-// UI helper functions
-function scrollToBeforeFooter() {
+function scrollToLastEmployee() {
     const rect = footer.getBoundingClientRect();
     window.scrollTo({
         top: window.scrollY + rect.top - window.innerHeight,
@@ -54,7 +60,7 @@ function addEmployeeCard(name, id) {
     deleteButton.classList.add('delete-button', 'button');
     deleteButton.setAttribute('type', 'button');
     deleteButton.setAttribute('data-employee-id', id);
-    deleteButton.addEventListener("click", handleDelete)
+    deleteButton.addEventListener("click", handleDeleteEmployee)
 
     const deleteIcon = document.createElement('i');
     deleteIcon.classList.add('fa-solid', 'fa-trash', 'fa-icon');
@@ -84,20 +90,12 @@ const footer = document.querySelector('.footer');
 const deleteButtons = document.querySelectorAll(".delete-button");
 
 // Event listeners
-addButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    const trimmed = nameInput.value.trim();
-    if (trimmed === '') {
-        showErrorMessage("Name cannot be blank.");
-        return;
-    }
-    addEmployee(trimmed, onAddEmployee);
-});
+addButton.addEventListener("click", handleAddEmployee);
 
 nameInput.addEventListener("input", () => {
     hideErrorMessage();
 });
 
 deleteButtons.forEach(button =>
-    button.addEventListener("click", handleDelete)
+    button.addEventListener("click", handleDeleteEmployee)
 );

@@ -1,4 +1,9 @@
-async function addEmployee(name, callback) {
+/**
+ * Add new employee API call
+ * @param name name of the new employee
+ * @returns {Promise<{success: boolean, data: any}>} { successStatus, responseData}
+ */
+async function addEmployee(name) {
     const response = await fetch("/employees", {
         method: 'POST',
         headers: {
@@ -8,9 +13,9 @@ async function addEmployee(name, callback) {
     });
 
     if (response.ok) {
-        callback(true, await response.json());
+        return { success: true, data: await response.json() };
     } else {
-        callback(false, await response.json());
+        return { success: false, data: await response.json() };
     }
 }
 
