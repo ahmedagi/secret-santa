@@ -45,28 +45,20 @@ public class SecretSantaService {
         Collections.shuffle(employees);
 
         List<SecretSantaPair> pairs = new ArrayList<>();
-        for (int i = 1; i < employees.size(); i += 2) {
-            pairs.add(new SecretSantaPair(
-                            employees.get(i - 1).getId(),
-                            employees.get(i).getId(),
-                            newList.getId()
-                    )
-            );
+        for (int i = 0; i < employees.size() - 1; i++) {
             pairs.add(new SecretSantaPair(
                             employees.get(i).getId(),
-                            employees.get(i - 1).getId(),
+                            employees.get(i + 1).getId(),
                             newList.getId()
                     )
             );
         }
 
-        if ((employees.size() % 2) != 0) {
-            pairs.add(new SecretSantaPair(
-                    employees.getLast().getId(),
-                    null,
-                    newList.getId()
-            ));
-        }
+        pairs.add(new SecretSantaPair(
+                employees.getLast().getId(),
+                employees.getFirst().getId(),
+                newList.getId()
+        ));
 
         secretSantaRepository.saveAll(pairs);
         return secretSantaRepository.findPairs();
