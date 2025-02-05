@@ -1,8 +1,11 @@
 package org.example.secretsanta.service;
 
+import org.example.secretsanta.exception.EmployeeNotFoundException;
 import org.example.secretsanta.model.Employee;
 import org.example.secretsanta.repository.EmployeeRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EmployeeService {
@@ -25,9 +28,16 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
+    @Transactional
     public void deleteEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException("User not found."));
-        employee.setDeleted(true);
-        employeeRepository.save(employee);
+        try {
+            // Attempt hard delete first
+            employeeRepository.deleteById(employee.getId());
+        } catch (DataIntegrityViolationException e) {
+            // Soft delete
+            employee.setDeleted(true);
+            employeeRepository.save(employee);
+        }
     }
 }
