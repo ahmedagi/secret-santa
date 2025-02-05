@@ -16,7 +16,7 @@ async function handleAddEmployee(e) {
         nameInput.value = '';
         nameInput.focus();
     } else {
-        showErrorMessage(data);
+        showErrorMessage(data.message);
     }
 }
 
@@ -29,7 +29,7 @@ async function handleDeleteEmployee(e) {
         employeesContainer.removeChild(card);
         button.removeEventListener("click", handleDeleteEmployee);
     } else {
-        alert(data);
+        alert(data.message);
     }
 }
 
