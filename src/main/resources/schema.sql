@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS pair (
     receiver_id INT,
     list_id INT NOT NULL,
     FOREIGN KEY (list_id) REFERENCES list(id) ON DELETE CASCADE,
-    FOREIGN KEY (giver_id) REFERENCES employee(id) ON DELETE CASCADE,
-    FOREIGN KEY (receiver_id) REFERENCES employee(id) ON DELETE CASCADE,
+    FOREIGN KEY (giver_id) REFERENCES employee(id),
+    FOREIGN KEY (receiver_id) REFERENCES employee(id),
     UNIQUE (list_id, giver_id)
 );
