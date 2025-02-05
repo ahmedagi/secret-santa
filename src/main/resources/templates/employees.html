@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/employees.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script type="module" th:src="@{/js/employees.js}" defer></script>
     <title>Employees</title>
 </head>
 <body class="container">
@@ -21,19 +22,17 @@
         </div>
     </div>
     <form class="add-employee-form" action="/api/employees" method="post">
-        <label for="name">Add Employee</label>
+        <label for="name-input">Add Employee</label>
         <div class="add-employee-input">
             <input
                     type="text"
                     name="name"
-                    id="name"
+                    id="name-input"
                     placeholder="Name"
-                    required
-                    pattern=".*\S+.*"
-                    title="Field cannot be blank"
             >
             <button class="button submit-button" type="submit">Add</button>
         </div>
+        <span class="error-message"></span>
     </form>
 </main>
 <footer class="footer">

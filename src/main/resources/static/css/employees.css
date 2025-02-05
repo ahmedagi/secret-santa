@@ -68,7 +68,6 @@ button:hover {
 .add-employee-form {
     display: flex;
     flex-direction: column;
-    gap: 8px;
 
     position: sticky;
     bottom: 0px;
@@ -88,6 +87,8 @@ button:hover {
     display: flex;
     align-items: center;
     gap: 8px;
+    padding-top: 8px;
+    padding-bottom: 0;
 }
 
 input[type=text] {
@@ -138,6 +139,11 @@ input[type=text] {
 .submit-button {
     background-color: var(--santa-dark-green);
     color: var(--santa-white);
+}
+
+.error-message {
+    color: crimson;
+    font-size: 14px;
 }
 
 .fa-icon {
