@@ -54,6 +54,7 @@ function addEmployeeCard(name, id) {
     deleteButton.classList.add('delete-button', 'button');
     deleteButton.setAttribute('type', 'button');
     deleteButton.setAttribute('data-employee-id', id);
+    deleteButton.addEventListener("click", handleDelete)
 
     const deleteIcon = document.createElement('i');
     deleteIcon.classList.add('fa-solid', 'fa-trash', 'fa-icon');
