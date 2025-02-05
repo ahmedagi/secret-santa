@@ -1,5 +1,6 @@
-import { addEmployee } from "./api.js";
+import { addEmployee, deleteEmployee } from "./api.js";
 
+// API callbacks
 function onAddEmployee(success, data) {
     if (success) {
         addEmployeeCard(data.name, data.id);
@@ -8,6 +9,20 @@ function onAddEmployee(success, data) {
         nameInput.focus();
     } else {
         showErrorMessage(data);
+    }
+}
+
+// Event handlers
+async function handleDelete(e) {
+    const button = e.currentTarget;
+    const id = button.getAttribute("data-employee-id");
+    const { success, data } = await deleteEmployee(id);
+    if (success) {
+        const card = document.querySelector(`.employee-card[data-employee-id="${id}"]`);
+        employeesContainer.removeChild(card);
+        button.removeEventListener("click", handleDelete);
+    } else {
+        alert(data);
     }
 }
 
@@ -65,6 +80,7 @@ const nameInput = document.querySelector("#name-input");
 const addButton = document.querySelector(".submit-button");
 const errorMessage = document.querySelector(".error-message");
 const footer = document.querySelector('.footer');
+const deleteButtons = document.querySelectorAll(".delete-button");
 
 // Event listeners
 addButton.addEventListener("click", (e) => {
@@ -80,3 +96,7 @@ addButton.addEventListener("click", (e) => {
 nameInput.addEventListener("input", () => {
     hideErrorMessage();
 });
+
+deleteButtons.forEach(button =>
+    button.addEventListener("click", handleDelete)
+);
