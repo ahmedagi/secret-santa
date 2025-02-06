@@ -59,14 +59,14 @@ public class SecretSantaService {
 
         if (employees.size() == 1) {
             pairs.add(new SecretSantaPair(
-                    employees.getFirst().getId(),
+                    employees.get(0).getId(),
                     null,
                     newList.getId()
             ));
         } else {
             pairs.add(new SecretSantaPair(
-                    employees.getLast().getId(),
-                    employees.getFirst().getId(),
+                    employees.get(employees.size() - 1).getId(),
+                    employees.get(0).getId(),
                     newList.getId()
             ));
         }
