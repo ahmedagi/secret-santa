@@ -7,10 +7,11 @@
     --santa-beige: #f3e9d5;
     --santa-brown: #43291f;
     --santa-white: #efeeea;
+    --font-black: #111;
+    --font-gray: #333;
 
     /* fonts */
     --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-
 }
 
 * {
@@ -18,6 +19,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font-family);
+    color: var(--font-black);
 }
 
 html {
