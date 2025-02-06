@@ -19,4 +19,13 @@ public interface SecretSantaRepository extends CrudRepository<SecretSantaPair, L
     WHERE list.created_at = (SELECT MAX(created_at) FROM list);
 """)
     List<SecretSantaPairDTO> findPairs();
+
+    @Query("""
+    SELECT EXISTS(
+        SELECT 1 
+        FROM pair 
+        WHERE giver_id = :employeeId OR receiver_id = :employeeId
+    )
+""")
+    Boolean existsByGiverIdOrReceiverId(Long employeeId);
 }
