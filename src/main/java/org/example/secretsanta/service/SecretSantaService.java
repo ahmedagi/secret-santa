@@ -6,13 +6,12 @@ import org.example.secretsanta.model.SecretSantaPair;
 import org.example.secretsanta.model.SecretSantaPairDTO;
 import org.example.secretsanta.repository.EmployeeRepository;
 import org.example.secretsanta.repository.SecretSantaListRepository;
-import org.example.secretsanta.repository.SecretSantaRepository;
+import org.example.secretsanta.repository.SecretSantaPairRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,12 +20,12 @@ public class SecretSantaService {
 
     private final EmployeeRepository employeeRepository;
     private final SecretSantaListRepository secretSantaListRepository;
-    private final SecretSantaRepository secretSantaRepository;
+    private final SecretSantaPairRepository secretSantaRepository;
 
     public SecretSantaService(
             EmployeeRepository employeeRepository,
             SecretSantaListRepository secretSantaListRepository,
-            SecretSantaRepository secretSantaRepository
+            SecretSantaPairRepository secretSantaRepository
     ) {
         this.employeeRepository = employeeRepository;
         this.secretSantaListRepository = secretSantaListRepository;
@@ -39,10 +38,14 @@ public class SecretSantaService {
 
     @Transactional
     public List<SecretSantaPairDTO> generateNewPairs() {
-        SecretSantaList newList = secretSantaListRepository.save(new SecretSantaList(null, LocalDateTime.now()));
-
         List<Employee> employees = (List<Employee>) employeeRepository.findAllByDeletedFalse();
+        if (employees.isEmpty()) {
+            return new ArrayList<>();
+        }
+
         Collections.shuffle(employees);
+
+        SecretSantaList newList = secretSantaListRepository.save(new SecretSantaList(null, LocalDateTime.now()));
 
         List<SecretSantaPair> pairs = new ArrayList<>();
         for (int i = 0; i < employees.size() - 1; i++) {

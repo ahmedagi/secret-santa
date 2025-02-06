@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface SecretSantaRepository extends CrudRepository<SecretSantaPair, Long> {
+public interface SecretSantaPairRepository extends CrudRepository<SecretSantaPair, Long> {
 
     @Query("""
     SELECT pair.giver_id, giver.name AS giver_name, 
