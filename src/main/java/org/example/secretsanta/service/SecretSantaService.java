@@ -57,11 +57,19 @@ public class SecretSantaService {
             );
         }
 
-        pairs.add(new SecretSantaPair(
-                employees.getLast().getId(),
-                employees.getFirst().getId(),
-                newList.getId()
-        ));
+        if (employees.size() == 1) {
+            pairs.add(new SecretSantaPair(
+                    employees.getFirst().getId(),
+                    null,
+                    newList.getId()
+            ));
+        } else {
+            pairs.add(new SecretSantaPair(
+                    employees.getLast().getId(),
+                    employees.getFirst().getId(),
+                    newList.getId()
+            ));
+        }
 
         secretSantaRepository.saveAll(pairs);
         return secretSantaRepository.findPairs();
