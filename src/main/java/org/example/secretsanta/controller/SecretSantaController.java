@@ -26,7 +26,6 @@ public class SecretSantaController {
         if (!model.containsAttribute("pairs")) {
             List<SecretSantaPairDTO> pairs = secretSantaService.getPairs();
             model.addAttribute("pairs", pairs);
-            System.out.println("hhh");
         }
 
         return "secret-santa.html";
