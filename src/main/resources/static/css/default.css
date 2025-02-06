@@ -1,0 +1,33 @@
+:root {
+    /* colors */
+    --santa-red: #da2c38;
+    --santa-dark-green: #226f54;
+    --santa-light-green: #87c38f;
+    --santa-light-yellow: #f4f0bb;
+    --santa-beige: #f3e9d5;
+    --santa-brown: #43291f;
+    --santa-white: #efeeea;
+
+    /* fonts */
+    --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    height: 100%;
+}
+
+button:hover {
+    cursor: pointer;
+}
