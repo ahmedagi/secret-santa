@@ -18,7 +18,7 @@ public class EmployeeService {
 
     public Iterable<Employee> getAllEmployees(Boolean includeDeleted) {
         if (includeDeleted) {
-            return employeeRepository.findAll();
+            return employeeRepository.findAllByOrderByDeletedAsc();
         }
 
         return employeeRepository.findAllByDeletedFalse();

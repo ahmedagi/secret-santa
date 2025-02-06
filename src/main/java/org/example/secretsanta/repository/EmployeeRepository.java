@@ -10,4 +10,7 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
     @Query("SELECT * FROM employee WHERE deleted = false")
     List<Employee> findAllByDeletedFalse();
+
+    @Query("SELECT * FROM employee ORDER BY deleted ASC")
+    List<Employee> findAllByOrderByDeletedAsc();
 }
