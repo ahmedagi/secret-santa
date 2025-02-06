@@ -2,10 +2,12 @@ package org.example.secretsanta.controller;
 
 import org.example.secretsanta.model.SecretSantaPairDTO;
 import org.example.secretsanta.service.SecretSantaService;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -21,15 +23,19 @@ public class SecretSantaController {
 
     @GetMapping
     public String getPairs(Model model) {
-        List<SecretSantaPairDTO> pairs = secretSantaService.getPairs();
-        model.addAttribute("pairs", pairs);
+        if (!model.containsAttribute("pairs")) {
+            List<SecretSantaPairDTO> pairs = secretSantaService.getPairs();
+            model.addAttribute("pairs", pairs);
+            System.out.println("hhh");
+        }
+
         return "secret-santa.html";
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public List<SecretSantaPairDTO> generatePairs() {
-        return secretSantaService.generateNewPairs();
+    public String generatePairs(RedirectAttributes redirectAttributes) {
+        List<SecretSantaPairDTO> pairs = secretSantaService.generateNewPairs();
+        redirectAttributes.addFlashAttribute("pairs", pairs);
+        return "redirect:/";
     }
 }
