@@ -37,25 +37,6 @@ button:hover {
     flex-direction: column;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    color: var(--santa-white);
-
-    padding: 20px;
-
-    background-color: var(--santa-dark-green);
-
-    position: sticky;
-    top: 0px;
-}
-
-.header-title {
-    font-size: 32px;
-}
-
 .main {
     flex: 1;
     align-self: center;
@@ -148,16 +129,4 @@ input[type=text] {
 
 .fa-icon {
     /*font-size: 18px;*/
-}
-
-.footer {
-    display: flex;
-    justify-content: center;
-
-    padding: 16px;
-
-    background-color: var(--santa-beige);
-
-    color: var(--santa-brown);
-    font-size: 14px;
 }
