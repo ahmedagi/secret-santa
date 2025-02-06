@@ -1,8 +1,10 @@
 package org.example.secretsanta.controller;
 
+import org.apache.coyote.BadRequestException;
 import org.example.secretsanta.model.Employee;
 import org.example.secretsanta.service.EmployeeService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +36,14 @@ public class EmployeeController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public Employee createEmployee(@RequestBody Employee newEmployee) {
+    public Employee createEmployee(@RequestBody Employee newEmployee) throws BadRequestException {
+        final String name = newEmployee.getName();
+        if (name == null || name.isBlank()) {
+            throw new BadRequestException("Name cannot be empty");
+        } else if (name.length() > 64) {
+            throw new BadRequestException("Maximum length is 64 characters");
+        }
+
         return employeeService.createEmployee(newEmployee);
     }
 

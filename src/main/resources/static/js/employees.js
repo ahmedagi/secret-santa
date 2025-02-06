@@ -7,6 +7,9 @@ async function handleAddEmployee(e) {
     if (trimmed === '') {
         showErrorMessage("Name cannot be blank.");
         return;
+    } else if (trimmed.length > 64) {
+        showErrorMessage("Maximum length is 64 characters.")
+        return;
     }
 
     const { success, data } = await addEmployee(trimmed);

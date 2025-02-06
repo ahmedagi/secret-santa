@@ -1,5 +1,6 @@
 package org.example.secretsanta.controller.advice;
 
+import org.apache.coyote.BadRequestException;
 import org.example.secretsanta.exception.EmployeeNotFoundException;
 import org.example.secretsanta.model.ErrorDetails;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -29,6 +30,13 @@ public class GlobalExceptionControllerAdvice {
 
     @ExceptionHandler(EmployeeNotFoundException.class)
     public ResponseEntity<ErrorDetails> handleEmployeeNotFoundException(Exception e) {
+        return ResponseEntity
+                .status(400)
+                .body(new ErrorDetails(e.getMessage()));
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ErrorDetails> handleBadRequestException(Exception e) {
         return ResponseEntity
                 .status(400)
                 .body(new ErrorDetails(e.getMessage()));
