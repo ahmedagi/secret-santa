@@ -27,6 +27,7 @@ public class EmployeeController {
     ) {
         List<Employee> employees = (List<Employee>) employeeService.getAllEmployees(includeDeleted);
         model.addAttribute("employees", employees);
+        model.addAttribute("activeTab", "employees");
         return "employees.html";
     }
 

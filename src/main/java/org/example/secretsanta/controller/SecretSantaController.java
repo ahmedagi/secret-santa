@@ -27,6 +27,7 @@ public class SecretSantaController {
             List<SecretSantaPairDTO> pairs = secretSantaService.getPairs();
             model.addAttribute("pairs", pairs);
         }
+        model.addAttribute("activeTab", "secret-santa");
 
         return "secret-santa.html";
     }

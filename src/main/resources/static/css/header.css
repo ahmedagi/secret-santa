@@ -1,6 +1,5 @@
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
     color: var(--santa-white);
@@ -16,4 +15,38 @@
 .header-title {
     font-size: 32px;
     color: var(--santa-white);
+    flex: 1 1 0;
+}
+
+.navigation-links-container {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.invisible {
+    flex: 1 1 0;
+}
+
+.navigation-link {
+    color: var(--santa-white);
+    padding: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.link-selected {
+    background-color: #124e39;
+}
+
+.navigation-link:hover {
+    background-color: #175841;
+}
+
+@media (max-width: 850px) {
+    .invisible,
+    .header-title {
+        display: none;
+    }
 }

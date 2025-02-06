@@ -1,7 +1,9 @@
-
 <header class="header" th:fragment="header">
     <link rel="stylesheet" th:href="@{/css/header.css}">
-        <span class="header-title">
-            Secret Santa
-        </span>
+    <span class="header-title">Secret Santa</span>
+    <nav class="navigation-links-container">
+        <a href="/" class="navigation-link" th:classAppend="${activeTab == 'secret-santa' ? ' link-selected' : ''}">Secret Santa</a>
+        <a href="/employees" class="navigation-link" th:classAppend="${activeTab == 'employees' ? ' link-selected' : ''}">Employees</a>
+    </nav>
+    <div class="invisible"></div>
 </header>
