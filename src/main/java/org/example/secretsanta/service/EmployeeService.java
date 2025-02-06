@@ -3,7 +3,7 @@ package org.example.secretsanta.service;
 import org.example.secretsanta.exception.EmployeeNotFoundException;
 import org.example.secretsanta.model.Employee;
 import org.example.secretsanta.repository.EmployeeRepository;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.example.secretsanta.repository.SecretSantaPairRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,9 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final SecretSantaPairRepository secretSantaPairRepository;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository, SecretSantaPairRepository secretSantaPairRepository) {
         this.employeeRepository = employeeRepository;
+        this.secretSantaPairRepository = secretSantaPairRepository;
     }
 
     public Iterable<Employee> getAllEmployees(Boolean includeDeleted) {
@@ -31,13 +33,14 @@ public class EmployeeService {
     @Transactional
     public void deleteEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException("User not found."));
-        try {
-            // Attempt hard delete first
-            employeeRepository.deleteById(employee.getId());
-        } catch (DataIntegrityViolationException e) {
+        boolean paired = secretSantaPairRepository.existsByGiverIdOrReceiverId(id);
+        if (paired) {
             // Soft delete
             employee.setDeleted(true);
             employeeRepository.save(employee);
+        } else {
+            // Hard delete
+            employeeRepository.deleteById(employee.getId());
         }
     }
 }
