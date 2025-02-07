@@ -147,7 +147,7 @@ src
 
 ![Entity relationship diagram for secret santa database](./docs/images/erd.svg)
 
-## Future Igmprovements
+## Future Improvements
 
 - Authentication and authorization
 - Tests
