@@ -114,10 +114,10 @@ java -jar target/secret-santa-0.0.1-SNAPSHOT.jar
 
 ### API Endpoints
 
-| Method | Route           | Description          | Request Body (JSON)    |
-|--------|-----------------|----------------------|------------------------|
-| POST   | /employees      | Adds a new employee  | { "name": "John Doe" } |
-| DELETE | /employees/{id} | Removes and employee | N/A                    |
+| Method | Route           | Description         | Request Body (JSON)    |
+|--------|-----------------|---------------------|------------------------|
+| POST   | /employees      | Adds a new employee | { "name": "John Doe" } |
+| DELETE | /employees/{id} | Removes an employee | N/A                    |
 
 ## Project Structure
 
@@ -147,7 +147,7 @@ src
 
 ![Entity relationship diagram for secret santa database](./docs/images/erd.svg)
 
-## Future Improvements
+## Future Igmprovements
 
 - Authentication and authorization
 - Tests
