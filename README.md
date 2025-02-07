@@ -143,6 +143,10 @@ src
         └── application.properties
 ```
 
+## Database
+
+![Entity relationship diagram for secret santa database](./docs/images/erd.svg)
+
 ## Future Improvements
 
 - Authentication and authorization
