@@ -51,9 +51,12 @@ cd secret-santa
 Set up the PostgreSQL database and update the following properties inside the `application.properties` file:
 
 ```properties
+# Make sure to prefix the url with "jdbc:" (e.g. jdbc:postgresql://localhost:5432/secret_santa)
 spring.datasource.url=your_db_url
+
 spring.datasource.username=your_db_username
 spring.datasource.password=your_db_password
+
 # Optional - defaults to 8080
 server.port=your_server_port
 ```
@@ -77,6 +80,8 @@ java -jar target/secret-santa-0.0.1-SNAPSHOT.jar
 ```
 
 #### Option 2: Using Environment Variables (inline command)
+
+*NOTE: Make sure to prefix the url with "jdbc:" (e.g. jdbc:postgresql://localhost:5432/secret_santa)*
 
 ##### cmd:
 
